@@ -1,0 +1,109 @@
+---
+import { Switch } from '~/components'
+
+const tipos1 = [
+  'LA EMPRESA UTILIZA IA?',
+  'CON QUE FINES LA UTILIZA?',
+  'TIENE UNA IA PROPIA?',
+  'CONTRATO A UN PROVEEDOR EXTERNO PARA QUE DESARROLLE LA IA DE LA EMPRESA?',
+  'UTILIZA DATOS DE PRUEBA? QUÉ TIPO DE DATOS? SENSIBLES?',
+  'UTILIZA LA IA A FINES DE COMERCIALIZACIÓN?'
+]
+const tipos2 = ['EL TERCERO NO ES PRIVADO', 'EL TERCERO ES PRIVADO']
+const tipos3 = ['LA EMPREA REALIZÓ UNA EVALUACIÓN DE IMPACTO DE RIESGO?']
+const tipos4 = [
+  'REALIZÓ DOCUMENTACIÓN DE LOS PROCESOS Y MECANISMOS UTILIZADOS POR LA EMPRESA?',
+  'ADOPTÓ MEDIDAS DE GESTIÓN ADECUADAS?',
+  'REALIZÓ TESTINGS?',
+  'HA IDENTIFICADO POSIBLES SESGOS?',
+  'APLICA MEDIDAS PRÁCTICAS Y TÉCNICAS PARA PROTEGER LOS DERECHOS Y LIBERTADES DE LOS INDIVIDUOS?',
+  'APLICA TÉCNICA DE GOBERNANZA DE DATOS?',
+  'TIENE MANTENIMIENTO DE REGISTROS?'
+]
+const tipos5 = [
+  'LOS USUARIOS O INTERESADOS SON INFORMADOS DE MANERA CLARA Y TRANSAPARENTE DEL USO DE LA IA?',
+  'LA SUPERVISIÓN HUMANA SE ENCUENTRA DESARROLLADA Y DISEÑADA PARA QUE PUEDA SER SUPERVISADA POR UNA PERSONA FÍSICA AJENA A LA QUE LA DESARROLLO?',
+  'LA SUPERVISIÓN HUMANA SE GARANTIZA ANTES DE PONERSE EN VENTA EL SERVICIO O PRODUCTO A COMERCIALIZAR?',
+  'EL SISTEMA DE IA ES PRECISO Y SEGURO EN BASE A SU MÉTRICA?',
+  'SE PROBÓ FRENTE A TERCEROS NO INTERESADOS A LOS FINES DE PROBAR SU RESISTENCIA?',
+  'DISPONE DE UN SISTEMA DE GESTIÓN DE CALIDAD?',
+  'ES IMPORTADOR DEL SISTEMA DE IA?',
+  'ES PROVEEDOR DEL SISTEMA DE IA?',
+  'ES DISTRIBUIDOR DEL SISTEMA DE IA?'
+]
+---
+<head>
+  <script type="module" src='/src/scripts/auditoriaExterna.js ' defer is:inline></script>
+</head>
+
+<section class='rounded-lg bg-white p-6 shadow-md dark:bg-gray-800'>
+  <div class='m-auto flex'>
+    <h1
+      class='m-auto rounded-lg bg-white p-6 text-4xl font-extrabold text-gray-700 shadow-md dark:bg-gray-800 dark:text-gray-400'
+    >
+      AUDITORÍA EXTERNA EN MATERIA DE DATOS PERSONALES PARA TODOS LOS
+      INTERESADOS, CLIENTES O USUARIOS
+    </h1>
+  </div>
+  <h2 class='mb-4 text-2xl font-semibold text-gray-800 dark:text-white'>
+    INTELIGENCIA ARTIFICIAL
+  </h2>
+  <form id="datosIA" action='/submit' method='post'>
+    <div class=''>
+      {
+        tipos1.map((pregunta, index) => (
+          <Switch id={`switch-A-${index}`} label={pregunta} />
+        ))
+      }
+    </div>
+    <div class='my-4 flex items-center justify-between'>
+      <span class='font-bold text-gray-700 dark:text-gray-400'
+        >LA EMPRESA SE SOMETIÓ A UNA EVALUACIÓN DE CONFORMIDAD POR PARTE DE UN
+        TERCERO CON VISTAS A SU COMERCIALIZACIÓN?</span
+      >
+    </div>
+    <div class='ml-4'>
+      {
+        tipos2.map((pregunta, index) => (
+          <Switch id={`switch-B-${index}`} label={pregunta} />
+        ))
+      }
+    </div>
+    {
+      tipos3.map((pregunta, index) => (
+        <Switch id={`switch-C-${index}`} label={pregunta} />
+      ))
+    }
+    <div class='my-4 flex items-center justify-between'>
+      <span class='font-bold text-gray-700 dark:text-gray-400'
+        >SI EL RIESGO ES CONSIDERADO ALTO:</span
+      >
+    </div>
+    <div class='ml-4'>
+      {
+        tipos4.map((pregunta, index) => (
+          <Switch id={`switch-D-${index}`} label={pregunta} />
+        ))
+      }
+    </div>
+     <div class='my-4 flex items-center justify-between'>
+      <span class='font-bold text-gray-700 dark:text-gray-400'
+        >LA EMPRESA SOLICITA DATOS BIOMÉTRICOS Y GENÉTICOS PARA CONTRATAR SUS
+        SERVICIOS O PRODUCTOS?</span
+      >
+    </div>
+  
+    {
+      tipos5.map((pregunta, index) => (
+        <Switch id={`switch-E-${index}`} label={pregunta} />
+      ))
+    }
+
+    <button
+      type='submit'
+      class='mt-4 w-full rounded-lg bg-primary-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto'
+    >
+      Enviar
+    </button>
+  </form>
+</section>

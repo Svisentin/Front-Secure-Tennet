@@ -1,0 +1,35 @@
+---
+import { Switch } from '~/components'
+
+const identificadores = ['IP?', 'MAC?', 'ID?', 'TELÉFONO?', 'OTROS?']
+---
+<head>
+  <script type="module" src='/src/scripts/auditoriaInterna.js ' defer is:inline></script>
+</head>
+
+<section class='rounded-lg bg-white p-6 shadow-md dark:bg-gray-800'>
+  <div class='m-auto flex'>
+    <h1
+      class='m-auto rounded-lg bg-white p-6 text-4xl font-extrabold text-gray-700 shadow-md dark:bg-gray-800 dark:text-gray-400'
+    >
+      AUDITORÍA INTERNA EN MATERIA DE DATOS PERSONALES PARA TODOS LOS EMPLEADOS
+      O PRESTADORES DE SERVICIO DE LA EMPRESA
+    </h1>
+  </div>
+  <h2 class='mb-4 text-2xl font-semibold text-gray-800 dark:text-white'>
+    IDENTIFICADORES
+  </h2>
+  <form id="datosIdentificadores" action='/submit' method='post'>
+    {
+      identificadores.map((pregunta, index) => (
+        <Switch id={`switch-${index}`} label={pregunta} />
+      ))
+    }
+    <button
+      type='submit'
+      class='mt-4 w-full rounded-lg bg-primary-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto'
+    >
+      Enviar
+    </button>
+  </form>
+</section>

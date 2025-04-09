@@ -1,0 +1,78 @@
+---
+import { Switch } from '~/components'
+
+const tipos1 = ['MAYOR DE 16 AÑOS', 'MENOR DE 16 AÑOS']
+const tipos2 = [
+  'LOS INTERESADOS SON PERSONAS CON DISCAPACIDAD?',
+  'LOS INTERESADOS SON PERSONAS MAYORES?',
+  'LOS INTERESADOS SON PERSONAS CON ENFERMEDADES FÍSICAS O PSÍQUICAS?'
+]
+const tipos3 = ['ASISTIDOS POR SERVICIOS SOCIALES', 'DESEMPLEADOS', 'OTROS']
+const tipos4 = [
+  'LOS INTERESADOS SON PACIENTES MÉDICOS CON ENFERMEDADES PARTICULARES',
+  'LOS INTERESADOS SON EMPLEADOS',
+  'LOS INTERESADOS SON EMPLEADORES',
+  'USUARIOS DE IOT'
+]
+---
+<head>
+  <script type="module" src='/src/scripts/auditoriaExterna.js ' defer is:inline></script>
+</head>
+
+<section class='rounded-lg bg-white p-6 shadow-md dark:bg-gray-800'>
+  <div class='m-auto flex'>
+    <h1
+      class='m-auto rounded-lg bg-white p-6 text-4xl font-extrabold text-gray-700 shadow-md dark:bg-gray-800 dark:text-gray-400'
+    >
+      AUDITORÍA EXTERNA EN MATERIA DE DATOS PERSONALES PARA TODOS LOS
+      INTERESADOS, CLIENTES O USUARIOS
+    </h1>
+  </div>
+  <h2 class='mb-4 text-2xl font-semibold text-gray-800 dark:text-white'>
+    TIPOS DE USUARIOS E INTERESADOS
+  </h2>
+  <form id="datosTiposdeUsuario" action='/submit' method='post'>
+    <div class='my-4 flex items-center justify-between'>
+      <span class='font-bold text-gray-700 dark:text-gray-400'
+        >LA EDAD DE LOS INTERSADOS ES?</span
+      >
+    </div>
+    <div class='ml-4'>
+      {
+        tipos1.map((pregunta, index) => (
+          <Switch id={`switch-A-${index}`} label={pregunta} />
+        ))
+      }
+    </div>
+
+    {
+      tipos2.map((pregunta, index) => (
+        <Switch id={`switch-B-${index}`} label={pregunta} />
+      ))
+    }
+    <div class='my-4 flex items-center justify-between'>
+      <span class='font-bold text-gray-700 dark:text-gray-400'
+        >LOS INTERESADOS SON PERSONAS SOCIALMENTE VULNERABLES?</span
+      >
+    </div>
+    <div class='ml-4'>
+      {
+        tipos3.map((pregunta, index) => (
+          <Switch id={`switch-C-${index}`} label={pregunta} />
+        ))
+      }
+    </div>
+    {
+      tipos4.map((pregunta, index) => (
+        <Switch id={`switch-D-${index}`} label={pregunta} />
+      ))
+    }
+
+    <button
+      type='submit'
+      class='mt-4 w-full rounded-lg bg-primary-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto'
+    >
+      Enviar
+    </button>
+  </form>
+</section>

@@ -1,0 +1,348 @@
+---
+/* eslint max-lines: 'off' */
+
+import { url } from '~/lib/data'
+---
+
+<!-- TODO: Dynamic dropdowns -->
+<aside
+  id='sidebar'
+  class='fixed left-0 top-0 z-20 hidden h-full w-64 flex-shrink-0 flex-col pt-16 font-normal transition-width duration-75 lg:flex'
+  aria-label='Sidebar'
+>
+  <div
+    class='relative flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white pt-0 dark:border-gray-700 dark:bg-gray-800'
+  >
+    <div
+      class:list={[
+        'flex flex-1 flex-col overflow-y-auto pb-28 pt-5',
+        'scrollbar scrollbar-thumb-rounded-[0.1667rem] scrollbar-w-2',
+        'scrollbar-track-gray-400 scrollbar-thumb-slate-200',
+        'dark:scrollbar-track-gray-800 dark:scrollbar-thumb-slate-900'
+      ]}
+    >
+      <div
+        class='flex-1 space-y-1 divide-y divide-gray-200 bg-white px-3 dark:divide-gray-700 dark:bg-gray-800'
+      >
+        <ul class='space-y-2 pb-2'>
+          <li>
+            <form action='#' method='GET' class='lg:hidden'>
+              <label for='mobile-search' class='sr-only'>Search</label>
+              <div class='relative'>
+                <input
+                  type='text'
+                  name='email'
+                  id='mobile-search'
+                  class='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500'
+                  placeholder='Search'
+                />
+              </div>
+            </form>
+          </li>
+          <li>
+            <a
+              href={url('dashboard')}
+              class='group flex items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+            >
+              <span class='ml-3' sidebar-toggle-item>Panel de Control</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={url('formulario')}
+              class='group flex items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+            >
+              <span class='ml-3' sidebar-toggle-item>Formulario</span>
+            </a>
+          </li>
+
+          <li>
+            <button
+              type='button'
+              class='group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+              aria-controls='dropdown-principles'
+              data-collapse-toggle='dropdown-principles'
+            >
+              <span
+                class='ml-3 flex-1 whitespace-nowrap text-left'
+                sidebar-toggle-item> - Bases del Tratamiento</span
+              >
+            </button>
+            <ul id='dropdown-principles' class='hidden space-y-2 py-2'>
+              <li>
+                <a
+                  href={url('ambitoterritorial')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Ambito Territorial</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('comunicacion')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Comunicación</a
+                >
+              </li>
+              
+            </ul>
+          </li> 
+          <li>
+            
+            <button
+              type='button'
+              class='group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+              aria-controls='dropdown-principles2'
+              data-collapse-toggle='dropdown-principles2'
+            >
+              <span
+                class='ml-3 flex-1 whitespace-nowrap text-left'
+                sidebar-toggle-item> - Datos Personales</span
+              >
+            </button>
+            <ul id='dropdown-principles2' class='hidden space-y-2 py-2'>
+                <li>
+            <a
+              href={url('datosempresa')}
+              class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+              >Que trata la empresa</a
+            >
+          </li>
+          <li>
+            <a
+              href={url('extension')}
+              class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+              >Extensión del tratamiento</a
+            >
+          </li>
+            </ul>
+          </li>
+        
+          
+
+          <li>
+            <button
+              type='button'
+              class='group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+              aria-controls='dropdown-rights'
+              data-collapse-toggle='dropdown-rights'
+            >
+              <span
+                class='ml-3 flex-1 whitespace-nowrap text-left'
+                sidebar-toggle-item> - Auditoria Interna</span
+              >
+            </button>
+            <ul id='dropdown-rights' class='hidden space-y-2 py-2'>
+              <li>
+                <a
+                  href={url('datosidentifcatorios')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Datos identificatorios</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('monitoreo')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Monitoreo de datos</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('situacion')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Situación economica y financiera</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('localizacionybiometricos')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Datos de localización y biometricos</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('especiales')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Datos especiales o sensibles</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('identificadores')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Identificadores</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('legalcontrato')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Legal - Contrato</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <button
+              type='button'
+              class='group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+              aria-controls='dropdown-responsibility'
+              data-collapse-toggle='dropdown-responsibility'
+            >
+              <span
+                class='ml-3 flex-1 whitespace-nowrap text-left'
+                sidebar-toggle-item> - Auditoria Externa</span
+              >
+            </button>
+            <ul id='dropdown-responsibility' class='hidden space-y-2 py-2'>
+              <li>
+                <a
+                  href={url('identificatorios')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Datos identificatorios</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('tiposdeusuario')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Tipos de Usuarios</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('habitos')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Habitos y preferencias</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('situacioneconomica')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Situación economica</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('contratacion')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Contratación de servicios</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('transferencia')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Transferencia de datos</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('ia')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Inteligencia Artificial</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <button
+              type='button'
+              class='group flex w-full items-center rounded-lg p-2 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+              aria-controls='dropdown-records-security'
+              data-collapse-toggle='dropdown-records-security'
+            >
+              <span
+                class='ml-3 flex-1 whitespace-nowrap text-left'
+                sidebar-toggle-item> - Seguridad de datos</span
+              >
+            </button>
+            <ul id='dropdown-records-security' class='hidden space-y-2 py-2'>
+              <li>
+                <a
+                  href={url('general')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >General</a
+                >
+              </li>
+              <li>
+                <a
+                  href={url('incidentes')}
+                  class='group flex items-center rounded-lg p-2 pl-11 text-base text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'
+                  >Incidentes</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div
+  class='fixed inset-0 z-10 hidden bg-gray-900/50 dark:bg-gray-900/90'
+  id='sidebarBackdrop'
+>
+</div>
+
+<script>
+  const sidebar = document.getElementById('sidebar')
+
+  if (sidebar) {
+    const toggleSidebarMobile = (
+      sidebar: HTMLElement,
+      sidebarBackdrop: HTMLElement,
+      toggleSidebarMobileHamburger: HTMLElement,
+      toggleSidebarMobileClose: HTMLElement
+    ) => {
+      sidebar.classList.toggle('hidden')
+      sidebarBackdrop.classList.toggle('hidden')
+      toggleSidebarMobileHamburger.classList.toggle('hidden')
+      toggleSidebarMobileClose.classList.toggle('hidden')
+    }
+
+    const toggleSidebarMobileEl = document.getElementById('toggleSidebarMobile')
+    const sidebarBackdrop = document.getElementById('sidebarBackdrop')!
+    const toggleSidebarMobileHamburger = document.getElementById(
+      'toggleSidebarMobileHamburger'
+    )!
+    const toggleSidebarMobileClose = document.getElementById(
+      'toggleSidebarMobileClose'
+    )!
+    const toggleSidebarMobileSearch = document.getElementById(
+      'toggleSidebarMobileSearch'
+    )!
+
+    toggleSidebarMobileSearch?.addEventListener('click', () => {
+      toggleSidebarMobile(
+        sidebar,
+        sidebarBackdrop,
+        toggleSidebarMobileHamburger,
+        toggleSidebarMobileClose
+      )
+    })
+
+    toggleSidebarMobileEl?.addEventListener('click', () => {
+      toggleSidebarMobile(
+        sidebar,
+        sidebarBackdrop,
+        toggleSidebarMobileHamburger,
+        toggleSidebarMobileClose
+      )
+    })
+
+    sidebarBackdrop?.addEventListener('click', () => {
+      toggleSidebarMobile(
+        sidebar,
+        sidebarBackdrop,
+        toggleSidebarMobileHamburger,
+        toggleSidebarMobileClose
+      )
+    })
+  }
+</script>

@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+		"bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "william-voyek.vscode-nginx",
+    "aykutsarac.jsoncrack-vscode",
+    "tomoki1207.pdf"
+  ],
+  "unwantedRecommendations": []
+}

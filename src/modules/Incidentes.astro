@@ -1,0 +1,59 @@
+---
+import { Switch } from '~/components'
+
+const incidentes1 = [
+  'CONSIDERA LA NATURALEZA DE LOS DATOS AFECTADOS?',
+  'CONSIDERA EL VOLUMEN DE LOS DATOS AFECTADOS?',
+  'CONSIDERA SI DICHA INFORMACIÓN SE ENCUENTRA ENCRIPTADA?',
+  'CONSIDERA LAS LIBERTADES Y DERECHOS AFECTADOS?'
+]
+const incidentes2 = [
+  'LA EMPRESA TIENE POSIBILIDAD DE IDENTIFICAR A LOS AFECTADOS?',
+  'EN EL CASO QUE LA EMPRESA HAYA SUFRIDO UN ATAQUE, DESDE QUE MOMENTO NOTIFICARÍA A LA AUTORIDAD DE APLICACIÓN Y A LOS AFECTADOS?',
+  'POR QUE MEDIO LOS NOTIFICARÍA?'
+]
+---
+<head>
+  <script type="module" src='/src/scripts/seguridadDatos.js ' defer is:inline></script>
+</head>
+
+<section class='rounded-lg bg-white p-6 shadow-md dark:bg-gray-800'>
+  <div class='m-auto flex'>
+    <h1
+      class='m-auto rounded-lg bg-white p-6 text-4xl font-extrabold text-gray-700 shadow-md dark:bg-gray-800 dark:text-gray-400'
+    >
+    SEGURIDAD DE DATOS PERSONALES
+
+    </h1>
+  </div>
+  <h2 class='mb-4 text-2xl font-semibold text-gray-800 dark:text-white'>
+    NOTIFICACIONES Y COMUNICACIONES DE INCIDENTES O BRECHAS DE SEGURIDAD FRENTE
+    A LAS AUTORIDADES Y A LOS USUARIOS
+  </h2>
+  <form id="datosIncidentes" action='/submit' method='post'>
+    <div class='my-4 flex items-center justify-between'>
+      <span class='font-bold text-gray-700 dark:text-gray-400'
+        >REALIZA UNA EVALUACIÓN A LOS FINES DE IDENTIFICAR SI EL INCIDENTE ES
+        NOTIFICABLE O NO?</span
+      >
+    </div>
+    <div class='ml-4'>
+      {
+        incidentes1.map((pregunta, index) => (
+          <Switch id={`switch-A-${index}`} label={pregunta} />
+        ))
+      }
+    </div>
+    {
+      incidentes2.map((pregunta, index) => (
+        <Switch id={`switch-B-${index}`} label={pregunta} />
+      ))
+    }
+    <button
+      type='submit'
+      class='mt-4 w-full rounded-lg bg-primary-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto'
+    >
+      Enviar
+    </button>
+  </form>
+</section>

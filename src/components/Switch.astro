@@ -1,0 +1,126 @@
+<!--  switch.Astro -->
+---
+export interface Props {
+  id: string
+  label: string
+}
+
+const { id, label } = Astro.props
+---
+
+<div class='my-4 flex items-center justify-between'>
+  <span class='text-gray-700 dark:text-gray-400'>{label}</span>
+  <div class='relative inline-flex w-64 cursor-pointer items-center'>
+    <input
+      type='range'
+      min='0'
+      max='4'
+      step='1'
+      id={id}
+      name={id}
+      class='relative z-10 w-full'
+      value='0'
+    />
+    <div
+      class='absolute left-0 top-1/2 z-0 flex h-2.5 w-full -translate-y-1/2 transform items-center justify-between rounded border border-gray-400'
+    >
+      <div class='relative h-full w-1/5 rounded-l bg-gray-500' id={`${id}-color-0`}>
+        <span class='text-tiny absolute bottom-[-20px] left-1/2 -translate-x-1/2 transform text-gray-700 dark:text-gray-400'>nulo</span>
+      </div>
+      <div class='relative h-full w-1/5 bg-green-400' id={`${id}-color-1`}>
+        <span class='text-tiny absolute bottom-[-20px] left-1/2 -translate-x-1/2 transform text-gray-700 dark:text-gray-400'>bajo</span>
+      </div>
+      <div class='relative h-full w-1/5 bg-white' id={`${id}-color-2`}>
+        <span class='text-tiny absolute bottom-[-20px] left-1/2 -translate-x-1/2 transform text-gray-700 dark:text-gray-400'>medio</span>
+      </div>
+      <div class='relative h-full w-1/5 bg-yellow-300' id={`${id}-color-3`}>
+        <span class='text-tiny absolute bottom-[-20px] left-1/2 -translate-x-1/2 transform text-gray-700 dark:text-gray-400'>alto</span>
+      </div>
+      <div class='relative h-full w-1/5 rounded-r bg-red-500' id={`${id}-color-4`}>
+        <span class='text-tiny absolute bottom-[-20px] left-1/2 -translate-x-1/2 transform text-gray-700 dark:text-gray-400'>muy alto</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script defer is:inline>
+function updateSlider(event) {
+  const target = event.target;
+  if (!target) return;
+
+  const id = target.id;
+  const value = target.value;
+
+  for (let i = 0; i <= 4; i++) {
+    const element = document.getElementById(`${id}-color-${i}`);
+    if (element) {
+      element.style.opacity = i == Number(value) ? '1' : '0.3';
+    }
+  }
+
+  console.log("Cambio en switch:", id, "Valor:", value);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sliders = document.querySelectorAll('input[type="range"]');
+
+  if (sliders.length === 0) {
+    console.warn("No se encontraron sliders en el documento.");
+    return;
+  }
+
+  sliders.forEach(slider => {
+    slider.removeEventListener('input', updateSlider); // Evita agregar múltiples veces
+    slider.addEventListener('input', updateSlider);
+  });
+});
+</script>
+
+<style>
+  input[type='range']::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: white;
+    border: 2px solid gray;
+    border-radius: 50%;
+    margin-top: -9px; /* Center the thumb */
+  }
+
+  input[type='range']::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    -moz-appearance: none;
+    appearance: none;
+    background: white;
+    border: 2px solid gray;
+    border-radius: 50%;
+  }
+
+  input[type='range']::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    background: white;
+    border: 2px solid gray;
+    border-radius: 50%;
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 2.5px;
+    background: transparent;
+    position: relative;
+    z-index: 10;
+  }
+
+  input[type='range']:focus {
+    outline: none;
+  }
+
+  .text-tiny {
+    font-size: 0.6rem; /* Custom smaller size */
+  }
+</style>

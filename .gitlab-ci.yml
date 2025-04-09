@@ -1,0 +1,208 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+
+# Use the following environment variables in gitlab-ci configuration in order to
+# get this CI pipeline working:
+# - GITLAB_CI_DOCKER_LOGIN => Docker Repository login token
+# - RANCHER_WEBHOOK_STAGING => Url to update staging image at Rancher infra
+# - RANCHER_WEBHOOK_DEVELOPMENT => Url to update development image at Rancher infra
+# - RANCHER_WEBHOOK_PRODUCTION => Url to update production image at Rancher infra
+#
+# Specific env vars to configure the build at docker-build time. Add the corresponding suffix to match the environment.
+# No suffix means "Production" environment.
+# Valid options for prefixes are: _STAGING & _DEVELOPMENT
+# -------- #
+# ASTRO_BASE_URL
+# -------- #
+
+variables:
+  GITLAB_FEATURES: '${GITLAB_FEATURES},dependency_scanning'
+  CI_GITLAB_FIPS_MODE: 'true'
+  IMAGE_VERSION_TAG: $CI_COMMIT_SHORT_SHA
+
+# Exclude this just for now, to speed up CI process
+# include:
+# - template: Security/Secret-Detection.gitlab-ci.yml
+# - template: Security/Dependency-Scanning.gitlab-ci.yml
+
+stages:
+  - test # must be here because of security templates
+  - lint # Astro lint
+  - build # Docker image build
+  - development # Deploy
+  - staging # Deploy
+  - production # Deploy
+  - release # Generate a Release
+
+astro-lint: # made for testing if the linting process works well
+  stage: lint
+  image: node:current
+  before_script:
+    - corepack enable
+    - corepack prepare pnpm@latest-8 --activate
+    - pnpm config set store-dir .pnpm-store
+  script:
+    - pnpm install
+    - node --no-warnings --loader ts-node/esm --experimental-specifier-resolution=node --run lint
+  retry:
+    max: 2
+    when: always
+  interruptible: true
+  allow_failure: true
+
+build-docker-image-production:
+  stage: build
+  before_script:
+    - echo ${GITLAB_CI_DOCKER_LOGIN} | docker login -u gitlab-ci --password-stdin registry.guardiansoftheball.com:8443
+    - wget -q https://github.com/kreuzwerker/envplate/releases/download/v1.0.3/envplate_1.0.3_$(uname -s)_$(uname -m).tar.gz -O - | tar xz && chmod +x envplate && ./envplate -v .env.template && cp .env.template .env && rm envplate
+  script:
+    - |
+      docker build \
+      --build-arg BUILD_VERSION=$IMAGE_VERSION_TAG \
+      --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+      -t registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG .
+    - docker tag registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:latest
+    - docker push registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG
+    - docker push registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:latest
+  only:
+    - main
+    - master
+    - production
+  environment:
+    name: production
+  retry:
+    max: 2
+    when: always
+
+build-docker-image-staging:
+  stage: build
+  before_script:
+    - echo ${GITLAB_CI_DOCKER_LOGIN} | docker login -u gitlab-ci --password-stdin registry.guardiansoftheball.com:8443
+    - wget -q https://github.com/kreuzwerker/envplate/releases/download/v1.0.3/envplate_1.0.3_$(uname -s)_$(uname -m).tar.gz -O - | tar xz && chmod +x envplate && ./envplate -v .env.template && cp .env.template .env && rm envplate
+  script:
+    - |
+      docker build \
+      --build-arg BUILD_VERSION=$IMAGE_VERSION_TAG \
+      --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+      -t registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG .
+    - docker tag registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:staging
+    - docker push registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG
+    - docker push registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:staging
+  only:
+    - staging
+  environment:
+    name: staging
+  retry:
+    max: 2
+    when: always
+
+build-docker-image-development:
+  stage: build
+  before_script:
+    - echo ${GITLAB_CI_DOCKER_LOGIN} | docker login -u gitlab-ci --password-stdin registry.guardiansoftheball.com:8443
+    - wget -q https://github.com/kreuzwerker/envplate/releases/download/v1.0.3/envplate_1.0.3_$(uname -s)_$(uname -m).tar.gz -O - | tar xz && chmod +x envplate && ./envplate -v .env.template && cp .env.template .env && rm envplate
+  script:
+    - |
+      docker build \
+      --build-arg BUILD_VERSION=$IMAGE_VERSION_TAG \
+      --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+      -t registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG .
+    - docker tag registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:development
+    - docker push registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:$IMAGE_VERSION_TAG
+    - docker push registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming:development
+  only:
+    - development
+  environment:
+    name: development
+  retry:
+    max: 2
+    when: always
+
+deploy-development:
+  stage: development
+  image: curlimages/curl:8.5.0
+  needs: [build-docker-image-development]
+  script:
+    - |
+      curl --location ${RANCHER_WEBHOOK_DEVELOPMENT} \
+      --header 'Content-Type: application/json' \
+      --header 'Cookie: PL=rancher' \
+      --data '{
+          "push_data": {
+              "tag": "development"
+          },
+          "repository": {
+              "repo_name": "registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming"
+          }
+      }'
+  only:
+    - development
+  environment:
+    name: development
+    url: https://play-development.guardiansoftheball.com
+
+deploy-staging:
+  stage: staging
+  image: curlimages/curl:8.5.0
+  needs: [build-docker-image-staging]
+  script:
+    - |
+      curl --location ${RANCHER_WEBHOOK_STAGING} \
+      --header 'Content-Type: application/json' \
+      --header 'Cookie: PL=rancher' \
+      --data '{
+          "push_data": {
+              "tag": "staging"
+          },
+          "repository": {
+              "repo_name": "registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming"
+          }
+      }'
+  only:
+    - staging
+  environment:
+    name: staging
+    url: https://play-staging.guardiansoftheball.com
+
+deploy-production:
+  stage: production
+  image: curlimages/curl:8.5.0
+  needs: [build-docker-image-production]
+  script:
+    - |
+      curl --location ${RANCHER_WEBHOOK_PRODUCTION} \
+      --header 'Content-Type: application/json' \
+      --header 'Cookie: PL=rancher' \
+      --data '{
+          "push_data": {
+              "tag": "latest"
+          },
+          "repository": {
+              "repo_name": "registry.guardiansoftheball.com:8443/gob-frontend/astro-pixel-streaming"
+          }
+      }'
+  only:
+    - main
+    - master
+    - production
+  environment:
+    name: production
+    url: https://play.guardiansoftheball.com
+
+release-job:
+  stage: release
+  allow_failure: true
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG # Run this job only when a tag is created manually
+  script:
+    - echo "Running the release job"
+  release:
+    tag_name: $CI_COMMIT_TAG
+    name: 'Release $CI_COMMIT_TAG'
+    description: 'Release created using the gitlab-ci pipeline'

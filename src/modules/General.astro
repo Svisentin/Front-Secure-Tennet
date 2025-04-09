@@ -1,0 +1,55 @@
+---
+import { Switch } from '~/components'
+
+const general = [
+  'LA EMPRESA CUMPLE CON LA TRIADA CIA (CONFIDENCIALIDAD, INTEGRIDAD Y DISPONIBILIDAD)?',
+  'RESPONSABLE Y ENCARGADO CUMPLEN POR IGUAL LA TRIADA CIA?',
+  'POSEE MEDIDAS PREVENTIVAS DE SEGURIDAD?',
+  'POSEE MÉTODOS A LOS FINES DE DETECTAR INCIDENTES?',
+  'POSEE MÉTODOS DE RESPUESTAS DE INCIDENTES?',
+  'HAY UN MANUAL DE RESPUESTA A INCIDENTES O BRECHAS DE SEGURIDAD DE LA EMPRESA?',
+  'HAY UNA ALTA COMISIÓN DESIGNADA POR DPOS, CISO Y CUALQUIER GERENTE JERÁRQUICO DE LA EMPRESA?',
+  'TIENE PLAN DE CONTINUIDAD DE LA EMPRESA?',
+  'TIENE REALIZADAS AUDITORÍAS?',
+  'TIENE REALIZADOS ANÁLISIS DE MADUREZ?',
+  'POSEE ALGUNA CERTIFICACIÓN ISO O ALGUN ESTÁNDAR O CERTIFICACIÓN RECONOCIDA MUNDIALMENTE?',
+  'LOS EMPLEADOS, PROVEEDORES DE SERVICIOS Y TERCEROS INTEGRANTES DE LA CADENA DE VALOR DEL A EMPRESA TIENEN CONOCIMIENTO DE LOS ACCESOS Y LOS DATOS QUE TRATAN?',
+  'LA EMPRESA CAPACITA A SUS EMPLEADOS SOBRE ESTOS TEMAS?',
+  'REALIZAN CURSOS DE CAPACITACIÓN CONSTANTE?',
+  'EXISTE UN MANUAL DE SEGURIDAD DE LA EMPRESA?',
+  'LA INFORMACIÓN DE DATOS QUE UTILIZA SE ENCUENTRA ENCRIPTADA?',
+  'LA INFORMACIÓN DE DATOS QUE UTILIZA SE ENCUENTRA ANONIMIZADA?',
+  'LA INFORMACIÓN DE DATOS QUE UTILIZA SE ENCUENTRA PSEUDOANONIMIZADA?',
+  'SU EMPRESA POSEE UNA CULTURA DE DATOS Y CIBERSEGURIDAD?',
+  'LA EMPRESA EXIGE QUE SUS SUBCONTRATADOS, ENCARGADOS Y DEMÁS CUENTEN CON ALTOS STANDARES DE CIBERSEGURIDAD?'
+]
+---
+<head>
+  <script type="module" src='/src/scripts/seguridadDatos.js ' defer is:inline></script>
+</head>
+
+<section class='rounded-lg bg-white p-6 shadow-md dark:bg-gray-800'>
+  <div class='m-auto flex'>
+    <h1
+      class='m-auto rounded-lg bg-white p-6 text-4xl font-extrabold text-gray-700 shadow-md dark:bg-gray-800 dark:text-gray-400'
+    >
+      SEGURIDAD DE DATOS PERSONALES
+    </h1>
+  </div>
+  <h2 class='mb-4 text-2xl font-semibold text-gray-800 dark:text-white'>
+    GENERAL
+  </h2>
+  <form id="datosGeneral" action='/submit' method='post'>
+    {
+      general.map((pregunta, index) => (
+        <Switch id={`switch-${index}`} label={pregunta} />
+      ))
+    }
+    <button
+      type='submit'
+      class='mt-4 w-full rounded-lg bg-primary-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:w-auto'
+    >
+      Enviar
+    </button>
+  </form>
+</section>
