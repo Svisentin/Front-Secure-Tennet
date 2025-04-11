@@ -24,7 +24,13 @@ const serviciosPrestados = [
 ---
 
 <head>
-  <script type="module" src='/src/scripts/formulario.js ' defer is:inline></script>
+  <script>
+    window.BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL;
+  </script>
+  
+  <script type="module" src='/scripts/formulario.js ' defer></script>
+
+
 </head>
 
 <section

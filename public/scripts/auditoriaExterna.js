@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL;
 	const form = document.getElementById("datosIdentificatorios");
 
 	if (form) {
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/audExtIdentificatorios`, {
+				const response = await fetch(`${backendURL}/auth/audExtIdentificatorios`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -109,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/audExtTiposdeUsuarios`, {
+				const response = await fetch(`${backendURL}/auth/audExtTiposdeUsuarios`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -163,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/audExtHabitos`, {
+				const response = await fetch(`${backendURL}/auth/audExtHabitos`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -219,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/audExtSituacionEconomica`, {
+				const response = await fetch(`${backendURL}/auth/audExtSituacionEconomica`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -324,7 +325,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/audExtContratacion`, {
+				const response = await fetch(`${backendURL}/auth/audExtContratacion`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -379,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/audExtTransferencia`, {
+				const response = await fetch(`${backendURL}/auth/audExtTransferencia`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -469,7 +470,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/audExtdatosIA`, {
+				const response = await fetch(`${backendURL}/auth/audExtdatosIA`, {
 					method: "POST",
 					credentials: "include",
 					headers: {

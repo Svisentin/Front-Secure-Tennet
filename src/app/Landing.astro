@@ -1,11 +1,18 @@
 <html lang='es'>
-  <head>
+  <head> 
     <title>Secure Tenet - Protección Digital de Alto Nivel</title>
     <meta
       name='description'
       content='Secure Tenet ofrece soluciones avanzadas de protección digital para empresas y particulares, asegurando la máxima seguridad y privacidad.'
     />
-    <script type="module" src='/src/scripts/auth.js' defer is:inline></script>
+    <script>
+      window.BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL;
+    </script>
+    
+    <script type="module" src='/scripts/auth.js' defer ></script>
+
+    
+
   </head>
   <body class='bg-gray-100 text-gray-900'>
     <main>

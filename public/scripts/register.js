@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+	const backendURL = window.BACKEND_URL;
 	const form = document.getElementById("registerForm");
 
 	if (!form) return; // Evita errores si el formulario no existe
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 
 		try {
-			const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/register`, {
+			const response = await fetch(`${backendURL}/auth/register`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ email, password }),

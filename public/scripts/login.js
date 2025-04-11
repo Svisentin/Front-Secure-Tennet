@@ -16,8 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
 // Función para hacer login
 
 async function login(email, password) {
+	const backendURL = window.BACKEND_URL;
+
 	try {
-		const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/login`, {
+		const response = await fetch(`${backendURL}/auth/login`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
@@ -57,9 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function logout() {
+	const backendURL = window.BACKEND_URL;
+
 	console.log("Logout initiated");
 	try {
-		const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/logout`, {
+		const response = await fetch(`${backendURL}/auth/logout`, {
 			method: "POST",
 			credentials: "include",
 		});

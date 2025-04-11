@@ -2,13 +2,17 @@
 /* eslint max-lines: 'off' */
 ---
 <head>
+	<script>
+		window.BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL;
+	  </script>
+	  
     <!-- Usamos defer para asegurarnos de que los scripts se carguen en el orden correcto -->
-    <script src="/src/lib/jspdf.umd.min.js" defer is:inline></script>
-    <script src="/src/lib/jspdf.plugin.autotable.min.js" defer is:inline></script>
+    <script src="/src/lib/jspdf.umd.min.js" defer ></script>
 
     <!-- Otros scripts -->
-    <script type="module" src='/src/scripts/dashboard.js' defer is:inline></script>
-    <script type="module" src='/src/scripts/export.js' defer is:inline></script>
+	
+	  <script type="module" src="/scripts/login.js" defer></script>
+    <script type="module" src='/scripts/dashboard.js' defer ></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	
 </head>

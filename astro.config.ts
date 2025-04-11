@@ -9,7 +9,8 @@ const DEV_PORT = 2121;
 // https://astro.build/config
 export default defineConfig({
 	base: "/",
-	site: "http://localhost:2121",
+	// site: "http://localhost:2121",
+	site: "https://front-secure-tennet.vercel.app/",
 
 	output: "server",
 	adapter: vercel(),

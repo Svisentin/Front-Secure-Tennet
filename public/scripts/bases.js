@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL;
 	const form = document.getElementById("datosAmbitoTerritorial");
 
 	if (form) {
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/ambitoTerritorial`, {
+				const response = await fetch(`${backendURL}/auth/ambitoTerritorial`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/comunicacion`, {
+				const response = await fetch(`${backendURL}/auth/comunicacion`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/datosEmpresa`, {
+				const response = await fetch(`${backendURL}/auth/datosEmpresa`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -207,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/datosExtensionFinalidad`, {
+				const response = await fetch(`${backendURL}/auth/datosExtensionFinalidad`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -263,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // 			console.log("Enviando solicitud al backend...");
 
 // 			try {
-// 				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/datosFinalidad`, {
+// 				const response = await fetch(`${backendURL}/auth/datosFinalidad`, {
 // 					method: "POST",
 // 					credentials: "include",
 // 					headers: {

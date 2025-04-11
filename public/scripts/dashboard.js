@@ -1,7 +1,7 @@
 // document.addEventListener("DOMContentLoaded", async function () {
 // 	async function fetchChartData() {
 // 		try {
-// 			const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/chartData`, {
+// 			const response = await fetch(`${backendURL}/auth/chartData`, {
 // 				method: "POST",
 // 				credentials: "include",
 // 				headers: {
@@ -190,9 +190,10 @@ let chart; // Definir chart en un ámbito global
 let nombreEmpresa = "";
 
 document.addEventListener("DOMContentLoaded", async function () {
+	const backendURL = window.BACKEND_URL;
 	async function fetchChartData() {
 		try {
-			const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/chartData`, {
+			const response = await fetch(`${backendURL}/auth/chartData`, {
 				method: "POST",
 				credentials: "include",
 				headers: {

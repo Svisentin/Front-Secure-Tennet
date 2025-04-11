@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL;
 	const form = document.getElementById("passwordSettings");
 	if (form) {
 		form.addEventListener("submit", async function (event) {
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/passwordSettings`, {
+				const response = await fetch(`${backendURL}/auth/passwordSettings`, {
 					method: "POST",
 					credentials: "include",
 					headers: {

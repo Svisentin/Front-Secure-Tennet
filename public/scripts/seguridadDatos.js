@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL;
 	const form = document.getElementById("datosGeneral");
 
 	if (form) {
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/datosGeneral`, {
+				const response = await fetch(`${backendURL}/auth/datosGeneral`, {
 					method: "POST",
 					credentials: "include",
 					headers: {
@@ -94,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log("Enviando solicitud al backend...");
 
 			try {
-				const response = await fetch(`${import.meta.env.PUBLIC_BACKEND_URL}/auth/datosIncidentes`, {
+				const response = await fetch(`${backendURL}/auth/datosIncidentes`, {
 					method: "POST",
 					credentials: "include",
 					headers: {

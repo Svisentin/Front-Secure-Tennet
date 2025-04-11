@@ -195,7 +195,7 @@
 ./src/scripts
 ./src/scripts/auditoriaExterna.js
 ./src/scripts/auditoriaInterna.js
-./src/scripts/auth.js
+./scripts/auth.js
 ./src/scripts/bases.js
 ./src/scripts/dashboard copy.js
 ./src/scripts/dashboard.js

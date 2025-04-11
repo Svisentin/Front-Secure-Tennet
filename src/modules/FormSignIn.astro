@@ -3,8 +3,12 @@ import { url } from '~/lib/data'
 ---
 
 <head>
-  <script type="module" src='/src/scripts/login.js' defer is:inline></script>
-  <script type="module" src='/src/scripts/auth.js' defer is:inline></script>
+  <script>
+    window.BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL;
+  </script>
+  <script type="module" src='/scripts/login.js' defer ></script>
+  <script type="module" src='/scripts/auth.js' defer ></script>
+ 
 
 </head>
 

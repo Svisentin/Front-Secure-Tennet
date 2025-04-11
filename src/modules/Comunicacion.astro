@@ -12,7 +12,12 @@ const comunication = [
 ]
 ---
 <head>
-  <script type="module" src='/src/scripts/bases.js ' defer is:inline></script>
+  
+  <script>
+  window.BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL;
+</script>
+<script type="module" src='/scripts/bases.js ' defer></script>
+
 </head>
 
 <section
