@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const backendURL = window.BACKEND_URL;
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	const form = document.getElementById("datosIdentificatorios");
 
 	if (form) {
@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosMonitoreo");
 
 	if (form) {
@@ -112,6 +114,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosSituacion");
 
 	if (form) {
@@ -168,6 +172,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosLocalizacionyBiometricos");
 
 	if (form) {
@@ -224,6 +230,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosEspeciales");
 
 	if (form) {
@@ -280,6 +288,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosIdentificadores");
 
 	if (form) {
@@ -336,6 +346,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosLegalContrato");
 
 	if (form) {

@@ -10,7 +10,7 @@ const DEV_PORT = 2121;
 export default defineConfig({
 	base: "/",
 	// site: "http://localhost:2121",
-	site: "https://front-secure-tennet.vercel.app/",
+	site: "https://front-secure-tennet.vercel.app",
 
 	output: "server",
 	adapter: vercel(),

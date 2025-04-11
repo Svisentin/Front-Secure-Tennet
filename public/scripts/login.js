@@ -16,8 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Función para hacer login
 
 async function login(email, password) {
-	const backendURL = window.BACKEND_URL;
-
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	try {
 		const response = await fetch(`${backendURL}/auth/login`, {
 			method: "POST",
@@ -59,8 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function logout() {
-	const backendURL = window.BACKEND_URL;
-
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	console.log("Logout initiated");
 	try {
 		const response = await fetch(`${backendURL}/auth/logout`, {

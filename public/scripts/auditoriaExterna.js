@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const backendURL = window.BACKEND_URL;
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	const form = document.getElementById("datosIdentificatorios");
 
 	if (form) {
@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosTiposdeUsuario");
 
 	if (form) {
@@ -135,6 +137,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosHabitos");
 
 	if (form) {
@@ -191,6 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosSituacionEconomica");
 
 	if (form) {
@@ -246,6 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 });
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosContratacion");
 
 	if (form) {
@@ -351,6 +359,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosTransferencia");
 
 	if (form) {
@@ -407,6 +417,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosIA");
 
 	if (form) {

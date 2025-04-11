@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const backendURL = window.BACKEND_URL;
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	const form = document.getElementById("passwordSettings");
 	if (form) {
 		form.addEventListener("submit", async function (event) {

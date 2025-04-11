@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const backendURL = window.BACKEND_URL;
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	const form = document.getElementById("datosGeneral");
 
 	if (form) {
@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
+
 	const form = document.getElementById("datosIncidentes");
 
 	if (form) {

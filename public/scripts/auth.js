@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const backendURL = window.BACKEND_URL;
-
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	const publicRoutes = ["/", "/authentication/sign-in", "/authentication/sign-up"];
 
 	async function checkAuth() {

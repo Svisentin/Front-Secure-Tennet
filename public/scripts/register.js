@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const backendURL = window.BACKEND_URL;
+	const backendURL = window.BACKEND_URL || "https://back-secure-tennet.vercel.app";
 	const form = document.getElementById("registerForm");
 
 	if (!form) return; // Evita errores si el formulario no existe
